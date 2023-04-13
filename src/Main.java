@@ -10,6 +10,14 @@ public class Main {
         } catch (LimitException e) {
             System.out.println("Ошибка: " + e.getMessage());
             System.out.println("Доступная сумма: " + e.getRemainingAmount());
+            double remainingAmount = e.getRemainingAmount();
+            if (remainingAmount > 0) {
+                try {
+                    account.withDraw(remainingAmount);
+                } catch (LimitException ex) {
+                    System.out.println("Ошибка: " + ex.getMessage());
+                }
+            }
         }
     }
 }
